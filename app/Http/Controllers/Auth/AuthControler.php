@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 class AuthControler extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function login()
     {
         return view('FrontEnd.auth_masuk');
@@ -21,9 +19,7 @@ class AuthControler extends Controller
     {
         return view('FrontEnd.auth_daftar');
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function login_post(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -40,9 +36,7 @@ class AuthControler extends Controller
             return redirect()->route('auth.login')->with('error', 'Email atau Password salah');
         }
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function register_post(Request $request)
     {
         $user = User::create([
@@ -58,9 +52,7 @@ class AuthControler extends Controller
         ]);
         return redirect()->route('auth.login')->with('success', 'Pendaftaran Berhasil');
     }
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function logout(Request $request)
     {
         Auth::logout();

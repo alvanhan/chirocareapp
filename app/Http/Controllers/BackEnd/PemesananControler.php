@@ -11,28 +11,19 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanPemesanan;
 class PemesananControler extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $pemesanan = Pemesanan::all();
         return view('BackEnd.pemesanan.index', compact('pemesanan'));
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request, string $id)
     {
         $pemesanan = Pemesanan::find($id);
         return view('BackEnd.pemesanan.show' , compact('pemesanan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
 
@@ -42,7 +33,6 @@ class PemesananControler extends Controller
         $Pembayaran->save();
         return redirect()->route('pemesanan.index')->with('success', 'Data berhasil diupdate');
     }
-
 
     function laporan() {
         return Excel::download(new LaporanPemesanan, "laporanPemesanan".date("YmdHis").".xlsx");
